@@ -1,0 +1,31 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions: {}
+
+jobs:
+  actionlint:
+    if: ${{ !github.event.repository.is_template }}
+    permissions:
+      contents: read
+    uses: pixelsonly/control-plane/.github/workflows/reusable-actionlint.yml@main
+
+  ci-success:
+    if: ${{ always() && !github.event.repository.is_template }}
+    needs: [actionlint]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require every needed job to succeed
+        env:
+          RESULTS: ${{ join(needs.*.result, ' ') }}
+        run: |
+          for result in $RESULTS; do
+            if [ "$result" != success ]; then
+              echo "::error::a required job finished as '$result' (results: $RESULTS)"
+              exit 1
+            fi
+          done
