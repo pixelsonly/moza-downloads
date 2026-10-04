@@ -74,6 +74,14 @@ class PackageTest(unittest.TestCase):
             package.load_meta(self.dash)
         self.assertIn("previews/a.png", str(cm.exception))
 
+    def test_duplicate_preview_basenames_fail(self):
+        (self.dash / "other").mkdir()
+        (self.dash / "other" / "a.png").write_bytes(b"png")
+        self.write_meta(dict(META, previews=["previews/a.png", "other/a.png"]))
+        with self.assertRaises(ValueError) as cm:
+            package.load_meta(self.dash)
+        self.assertIn("a.png", str(cm.exception))
+
     def test_bad_slug_fails(self):
         self.write_meta(dict(META, slug="bad slug!"))
         with self.assertRaises(ValueError) as cm:
