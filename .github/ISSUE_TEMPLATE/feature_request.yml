@@ -1,0 +1,19 @@
+name: Feature request
+description: An idea for the generator, packaging, releases or docs (not a specific dashboard).
+title: "[Feature]: "
+labels: ["type: feature", "needs-triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered

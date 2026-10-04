@@ -4,13 +4,12 @@
 [![Downloads](https://img.shields.io/github/downloads/pixelsonly/moza-downloads/total)](https://github.com/pixelsonly/moza-downloads/releases)
 [![SimHub + AZOM](https://img.shields.io/badge/SimHub-AZOM-0b7285)](https://github.com/giantorth/AZOM)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-fe5196?logo=conventionalcommits&logoColor=white)](https://www.conventionalcommits.org/)
+[![Code: GPL-3.0](https://img.shields.io/badge/code-GPL--3.0-blue)](LICENSE)
+[![Dashboards: CC BY-NC-SA 4.0](https://img.shields.io/badge/dashboards-CC%20BY--NC--SA%204.0-lightgrey)](dashboards/LICENSE)
 
 Custom wheel-screen dashboards for Moza sim racing hardware, designed and built by
 Pixelsonly Racing. Each dashboard is released on its own, and every release has a
 ready-to-install `.zip` on the [Releases](https://github.com/pixelsonly/moza-downloads/releases) page.
-
-> [!NOTE]
-> MOZA is a registered trademark of Gudsen Technology Co., Ltd. This project is not affiliated with, endorsed by, or sponsored by MOZA.
 
 ## Dashboards
 
@@ -97,3 +96,38 @@ Layout:
   `<id>-v<version>` (e.g. `ksp01-v0.1.0`). The `release-assets` workflow then builds the
   dashboard from that tag and attaches the `.zip`. To rebuild an existing release, run
   `release-assets` manually with the tag.
+
+## Contributing
+
+Bug reports, dashboard requests and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md),
+and please follow the [Code of Conduct](CODE_OF_CONDUCT.md). To report a security issue, see
+[SECURITY.md](SECURITY.md).
+
+## License
+
+This repository uses two licenses:
+
+- **Code** (`generator/`, `scripts/`, workflows): the [GNU General Public License v3.0](LICENSE).
+  You may use, modify and redistribute it, but redistributed versions must stay open source
+  under the GPL.
+- **Dashboards** (everything under `dashboards/`, including each dashboard's `build.py`, its
+  previews and the `.mzdash` files in the release downloads):
+  [Creative Commons BY-NC-SA 4.0](dashboards/LICENSE). You may share and adapt them with
+  credit to Pixelsonly Racing, **for non-commercial purposes only**, under the same license.
+  Selling these dashboards, or anything derived from them, is not permitted.
+
+As an additional permission under section 7 of the GPL-3.0, Pixelsonly Racing permits
+dashboard definitions under other licenses to import and use the generator. The GPL does not
+cover the dashboards the generator produces.
+
+Copyright (c) 2026 Pixelsonly Racing.
+
+## Trademarks
+
+"Pixelsonly Racing" and the Pixelsonly Racing logo are trademarks of Pixelsonly Racing and are
+not licensed under the GPL-3.0 or CC BY-NC-SA 4.0. Forks and derivative dashboards must not
+use the name or logo in a way that suggests they come from, or are endorsed by,
+Pixelsonly Racing.
+
+MOZA is a registered trademark of Gudsen Technology Co., Ltd. This project is not affiliated
+with, endorsed by, or sponsored by MOZA.

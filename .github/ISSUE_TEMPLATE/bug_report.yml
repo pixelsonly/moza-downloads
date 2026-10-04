@@ -1,0 +1,64 @@
+name: Bug report
+description: A dashboard shows something wrong, won't load, or a download is broken.
+title: "[Bug]: "
+labels: ["type: bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Problems with the AZOM plugin itself (connecting, uploading, telemetry channels) belong in [AZOM's issue tracker](https://github.com/giantorth/AZOM/issues).
+  - type: dropdown
+    id: dashboard
+    attributes:
+      label: Dashboard
+      options:
+        - KSP01
+        - Not dashboard-specific
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Dashboard version
+      description: From the download's file name, e.g. `pixelsonly-racing-Moza-KS-PRO-v0.1.0.zip` → 0.1.0
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: input
+    id: wheel
+    attributes:
+      label: Wheel and firmware
+      placeholder: Moza KS Pro, firmware 1.2.3
+    validations:
+      required: true
+  - type: dropdown
+    id: loader
+    attributes:
+      label: How do you load the dashboard?
+      options:
+        - SimHub + AZOM
+        - Moza Pit House
+    validations:
+      required: true
+  - type: input
+    id: loader-version
+    attributes:
+      label: SimHub / AZOM / Pit House versions
+      placeholder: SimHub 9.12.1, AZOM 1.4.0
+  - type: input
+    id: sim
+    attributes:
+      label: Sim / game
+      placeholder: iRacing, ACC, LMU…
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened, and what did you expect?
+      description: Which readout is wrong, and in what situation (e.g. delta stays red while ahead).
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Photos or screenshots
+      description: A photo of the wheel screen helps a lot. Drag images here.
