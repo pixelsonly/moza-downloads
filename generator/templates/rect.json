@@ -1,0 +1,69 @@
+{
+  "actions": {},
+  "binding": {},
+  "borderStyle": {
+    "allBorders": 0,
+    "allCornerRadius": 0,
+    "borderColor": {
+      "color": "#00000000",
+      "type": "SOLID"
+    },
+    "bordersBottom": 0,
+    "bordersLeft": 0,
+    "bordersRight": 0,
+    "bordersTop": 0,
+    "radiusBottomLeft": 0,
+    "radiusBottomRight": 0,
+    "radiusTopLeft": 0,
+    "radiusTopRight": 0
+  },
+  "children": [],
+  "effect": {
+    "blinkDelay": 250,
+    "blinkEnabled": false,
+    "blurRadius": 0,
+    "gravitySensorEnabled": false,
+    "innerShadow": {
+      "blur": 0,
+      "color": {
+        "color": "#FFFFFF",
+        "type": "SOLID"
+      },
+      "size": 0
+    },
+    "opacity": 100,
+    "outerShadow": {
+      "blur": 0,
+      "color": {
+        "color": "#00000000",
+        "type": "SOLID"
+      },
+      "depth": 0,
+      "direction": 0
+    },
+    "rotation": 0
+  },
+  "general": {
+    "backgroundColor": {
+      "color": "#00000000",
+      "type": "SOLID"
+    },
+    "borderColor": {
+      "color": "#00000000",
+      "type": "SOLID"
+    },
+    "borderRadius": 0,
+    "borderWidth": 0,
+    "height": 70,
+    "locked": false,
+    "visible": true,
+    "width": 270.99999999999994,
+    "x": 500.50000000000006,
+    "y": 167.5
+  },
+  "id": 0,
+  "macros": {},
+  "name": "Rectangle",
+  "plugins": [],
+  "type": "Rectangle.qml"
+}

@@ -2,3 +2,6 @@
 *.log
 .env
 .env.*
+docs/superpowers/
+dist/
+__pycache__/
