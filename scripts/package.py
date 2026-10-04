@@ -25,9 +25,14 @@ def load_meta(dashboard_dir: Path) -> dict:
             raise ValueError(f"{path}: missing key '{key}'")
     if not SLUG.match(meta["slug"]):
         raise ValueError(f"{path}: slug {meta['slug']!r} must match {SLUG.pattern}")
+    seen = {}
     for preview in meta["previews"]:
         if not (Path(dashboard_dir) / preview).is_file():
             raise ValueError(f"{path}: preview not found: {preview}")
+        base = Path(preview).name
+        if base in seen:
+            raise ValueError(f"{path}: previews {seen[base]} and {preview} share the file name {base}")
+        seen[base] = preview
     return meta
 
 

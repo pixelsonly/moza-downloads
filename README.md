@@ -1,6 +1,9 @@
 # Pixelsonly Racing — Moza Dashboards
 
-[![Release](https://img.shields.io/github/v/release/pixelsonly/moza-downloads)](https://github.com/pixelsonly/moza-downloads/releases)
+[![CI](https://img.shields.io/github/actions/workflow/status/pixelsonly/moza-downloads/ci.yml?branch=main&label=CI)](https://github.com/pixelsonly/moza-downloads/actions/workflows/ci.yml)
+[![Downloads](https://img.shields.io/github/downloads/pixelsonly/moza-downloads/total)](https://github.com/pixelsonly/moza-downloads/releases)
+[![SimHub + AZOM](https://img.shields.io/badge/SimHub-AZOM-0b7285)](https://github.com/giantorth/AZOM)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-fe5196?logo=conventionalcommits&logoColor=white)](https://www.conventionalcommits.org/)
 
 Custom wheel-screen dashboards for Moza sim racing hardware, designed and built by
 Pixelsonly Racing. Each dashboard is released on its own, and every release has a
@@ -11,12 +14,12 @@ ready-to-install `.zip` on the [Releases](https://github.com/pixelsonly/moza-dow
 
 ## Dashboards
 
-| Dashboard | Wheel | Preview | Download |
-|---|---|---|---|
-| Pixelsonly Racing KSP01 | Moza KS Pro | <img src="dashboards/ksp01/previews/1.png" alt="KSP01 preview" width="320"> | [Latest KSP01 release](https://github.com/pixelsonly/moza-downloads/releases?q=ksp01&expanded=true) |
+| Dashboard | Wheel | Version | Preview | Download |
+|---|---|---|---|---|
+| Pixelsonly Racing KSP01 | Moza KS Pro | ![KSP01 version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fpixelsonly%2Fmoza-downloads%2Fmain%2F.release-please-manifest.json&query=%24%5B%27dashboards%2Fksp01%27%5D&label=KSP01&prefix=v) | <img src="dashboards/ksp01/previews/1.png" alt="KSP01 preview" width="320"> | [Latest KSP01 release](https://github.com/pixelsonly/moza-downloads/releases?q=ksp01&expanded=true) |
 
-Each download is named `pixelsonly-racing-<wheel>-v<version>.zip`, for example
-`pixelsonly-racing-Moza-KS-PRO-v0.1.0.zip`. It holds one folder named after the
+Each download is named `pixelsonly-racing-<slug>-v<version>.zip`, where the slug names the
+wheel it is for, for example `pixelsonly-racing-Moza-KS-PRO-v0.1.0.zip`. It holds one folder named after the
 dashboard, which contains the `.mzdash` file, a `Resource/` folder and the preview images.
 
 ## Install: SimHub + AZOM (recommended)
@@ -47,6 +50,7 @@ evaluate the dashboards' JavaScript bindings.
 python3 dashboards/ksp01/build.py           # writes dist/Pixelsonly Racing KSP01/
 python3 scripts/package.py ksp01 0.1.0      # writes dist/pixelsonly-racing-Moza-KS-PRO-v0.1.0.zip
 scripts/check.sh                            # every test suite + build and package every dashboard (what CI runs)
+scripts/check.sh ksp01                      # the same, for one dashboard (what a release runs)
 ```
 
 Layout:
@@ -75,7 +79,8 @@ Layout:
    `packages` in `release-please-config.json`, and `"dashboards/<id>": "0.0.0"` to
    `.release-please-manifest.json`. `scripts/check.sh` fails if a dashboard folder and the
    release config disagree.
-3. Add a row to the table above.
+3. Add a row to the table above. For its version badge, copy KSP01's and replace `ksp01` in the
+   badge's `query` and `label`.
 
 ### How releases work
 
