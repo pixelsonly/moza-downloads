@@ -1,0 +1,74 @@
+name: release-assets
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to rebuild, e.g. ksp01-v0.1.0
+        required: true
+        type: string
+
+permissions: {}
+
+concurrency:
+  group: release-assets-${{ github.event.release.tag_name || inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  upload:
+    if: ${{ !github.event.repository.is_template }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Resolve dashboard and version from tag
+        id: resolve
+        env:
+          TAG: ${{ github.event.release.tag_name || inputs.tag }}
+        run: |
+          if [[ ! "$TAG" =~ ^([a-z0-9-]+)-v([0-9]+\.[0-9]+\.[0-9]+.*)$ ]]; then
+            echo "::error::tag '$TAG' is not <id>-v<semver>"
+            exit 1
+          fi
+          {
+            echo "tag=$TAG"
+            echo "id=${BASH_REMATCH[1]}"
+            echo "version=${BASH_REMATCH[2]}"
+          } >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ steps.resolve.outputs.tag }}
+          persist-credentials: false
+
+      - name: Check the dashboard exists
+        env:
+          TAG: ${{ steps.resolve.outputs.tag }}
+          ID: ${{ steps.resolve.outputs.id }}
+        run: |
+          if [ ! -f "dashboards/$ID/dashboard.json" ]; then
+            echo "::error::no dashboard '$ID' for tag '$TAG'"
+            exit 1
+          fi
+
+      - name: Test
+        run: scripts/check.sh
+
+      - name: Build and package
+        id: package
+        env:
+          ID: ${{ steps.resolve.outputs.id }}
+          VERSION: ${{ steps.resolve.outputs.version }}
+        run: |
+          python3 "dashboards/$ID/build.py"
+          zip="$(python3 scripts/package.py "$ID" "$VERSION")"
+          echo "zip=$zip" >> "$GITHUB_OUTPUT"
+
+      - name: Upload zip to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.resolve.outputs.tag }}
+          ZIP: ${{ steps.package.outputs.zip }}
+        run: gh release upload "$TAG" "$ZIP" --clobber --repo "$GITHUB_REPOSITORY"

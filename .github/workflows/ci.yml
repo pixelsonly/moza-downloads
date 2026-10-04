@@ -14,9 +14,21 @@ jobs:
       contents: read
     uses: pixelsonly/control-plane/.github/workflows/reusable-actionlint.yml@main
 
+  test:
+    if: ${{ !github.event.repository.is_template }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Test, build and package every dashboard
+        run: scripts/check.sh
+
   ci-success:
     if: ${{ always() && !github.event.repository.is_template }}
-    needs: [actionlint]
+    needs: [actionlint, test]
     runs-on: ubuntu-latest
     steps:
       - name: Require every needed job to succeed
