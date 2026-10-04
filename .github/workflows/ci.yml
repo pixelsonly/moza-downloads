@@ -12,7 +12,7 @@ jobs:
     if: ${{ !github.event.repository.is_template }}
     permissions:
       contents: read
-    uses: pixelsonly/control-plane/.github/workflows/reusable-actionlint.yml@main
+    uses: ./.github/workflows/reusable-actionlint.yml
 
   test:
     if: ${{ !github.event.repository.is_template }}

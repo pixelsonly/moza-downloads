@@ -1,0 +1,41 @@
+name: pr-title (reusable)
+
+on:
+  workflow_call:
+
+permissions: {}
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      # Under pull_request_target the default ref is the caller's base branch,
+      # so the allowed types come from trusted config, not the PR's head.
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Collect allowed types
+        id: types
+        run: |
+          if [ ! -f release-please-config.json ]; then
+            echo "::error file=release-please-config.json::release-please-config.json is missing; PR-title types are derived from its changelog-sections"
+            exit 1
+          fi
+          types=$(jq -r '.["changelog-sections"][].type' release-please-config.json)
+          {
+            echo 'types<<EOF'
+            printf '%s\n' "$types" chore build style | awk '!seen[$0]++'
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+
+      - uses: amannn/action-semantic-pull-request@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: ${{ steps.types.outputs.types }}
+          headerPattern: '^([\w-]*)(?:\(([\w$.\-*/ ]*)\))?!?: (.*)$'
+          headerPatternCorrespondence: type, scope, subject

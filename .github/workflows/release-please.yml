@@ -13,5 +13,5 @@ concurrency:
 jobs:
   release-please:
     if: ${{ !github.event.repository.is_template }}
-    uses: pixelsonly/control-plane/.github/workflows/reusable-release-please.yml@main
+    uses: ./.github/workflows/reusable-release-please.yml
     secrets: inherit
