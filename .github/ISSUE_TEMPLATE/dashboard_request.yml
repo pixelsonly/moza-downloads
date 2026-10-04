@@ -1,0 +1,33 @@
+name: Dashboard request
+description: Suggest a new dashboard, or a new readout or layout change for an existing one.
+title: "[Dashboard]: "
+labels: ["type: dashboard-request", "needs-triage"]
+body:
+  - type: input
+    id: wheel
+    attributes:
+      label: Wheel / display
+      placeholder: Moza KS Pro
+    validations:
+      required: true
+  - type: dropdown
+    id: dashboard
+    attributes:
+      label: New dashboard or change to an existing one?
+      options:
+        - New dashboard
+        - Change to KSP01
+    validations:
+      required: true
+  - type: textarea
+    id: readouts
+    attributes:
+      label: Readouts and layout
+      description: What should be on screen, and roughly where? Which sims or racing style is it for?
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: Reference images
+      description: Sketches, photos of real car dashes, or other dashboards you like.

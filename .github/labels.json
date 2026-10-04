@@ -1,0 +1,82 @@
+[
+  {
+    "name": "type: bug",
+    "color": "d73a4a",
+    "description": "Something isn't working"
+  },
+  {
+    "name": "type: feature",
+    "color": "a2eeef",
+    "description": "New tooling, generator or docs capability"
+  },
+  {
+    "name": "type: dashboard-request",
+    "color": "7057ff",
+    "description": "A new dashboard, or a change to an existing one"
+  },
+  {
+    "name": "type: docs",
+    "color": "0075ca",
+    "description": "Documentation only"
+  },
+  {
+    "name": "type: ci",
+    "color": "5319e7",
+    "description": "CI, release automation and dependencies"
+  },
+  {
+    "name": "dashboard: ksp01",
+    "color": "0b7285",
+    "description": "Pixelsonly Racing KSP01 (Moza KS Pro)"
+  },
+  {
+    "name": "loader: azom",
+    "color": "c5def5",
+    "description": "Loaded through SimHub + AZOM"
+  },
+  {
+    "name": "loader: pit-house",
+    "color": "c5def5",
+    "description": "Loaded through Moza Pit House"
+  },
+  {
+    "name": "needs-triage",
+    "color": "fbca04",
+    "description": "Not yet reviewed by a maintainer"
+  },
+  {
+    "name": "needs-hardware-test",
+    "color": "e99695",
+    "description": "Needs testing on a real wheel"
+  },
+  {
+    "name": "dependencies",
+    "color": "0366d6",
+    "description": "Dependency updates"
+  },
+  {
+    "name": "good first issue",
+    "color": "7057ff",
+    "description": "Good for newcomers"
+  },
+  {
+    "name": "help wanted",
+    "color": "008672",
+    "description": "Extra attention is needed"
+  },
+  {
+    "name": "question",
+    "color": "d876e3",
+    "description": "Further information is requested"
+  },
+  {
+    "name": "duplicate",
+    "color": "cfd3d7",
+    "description": "This issue or pull request already exists"
+  },
+  {
+    "name": "wontfix",
+    "color": "ffffff",
+    "description": "This will not be worked on"
+  }
+]
