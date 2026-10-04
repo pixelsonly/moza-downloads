@@ -93,7 +93,43 @@ class PackageTest(unittest.TestCase):
         self.assertIn("unknown dashboard: nope", done.stderr)
 
 
+class ReleaseConfigTest(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.repo = Path(self.tmp.name)
+        for d in ("ksp01", "ksp02"):
+            (self.repo / "dashboards" / d).mkdir(parents=True)
+            (self.repo / "dashboards" / d / "dashboard.json").write_text("{}")
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def write(self, packages, manifest):
+        (self.repo / "release-please-config.json").write_text(json.dumps({"packages": packages}))
+        (self.repo / ".release-please-manifest.json").write_text(json.dumps(manifest))
+
+    def test_consistent_config_has_no_problems(self):
+        self.write({"dashboards/ksp01": {"component": "ksp01"}, "dashboards/ksp02": {"component": "ksp02"}},
+                   {"dashboards/ksp01": "0.1.0", "dashboards/ksp02": "0.0.0"})
+        self.assertEqual(package.release_config_problems(self.repo), [])
+
+    def test_dashboard_missing_from_config_is_reported(self):
+        self.write({"dashboards/ksp01": {"component": "ksp01"}}, {"dashboards/ksp01": "0.1.0"})
+        problems = package.release_config_problems(self.repo)
+        self.assertTrue(any("dashboards/ksp02" in p and "release-please-config.json" in p for p in problems), problems)
+        self.assertTrue(any("dashboards/ksp02" in p and ".release-please-manifest.json" in p for p in problems), problems)
+
+    def test_component_must_equal_folder_name(self):
+        self.write({"dashboards/ksp01": {"component": "ksp01"}, "dashboards/ksp02": {"component": "ksp-02"}},
+                   {"dashboards/ksp01": "0.1.0", "dashboards/ksp02": "0.0.0"})
+        problems = package.release_config_problems(self.repo)
+        self.assertTrue(any("ksp-02" in p for p in problems), problems)
+
+
 class RepoDashboardsTest(unittest.TestCase):
+    def test_repo_release_config_matches_dashboards(self):
+        self.assertEqual(package.release_config_problems(REPO), [])
+
     def test_repo_dashboards_valid_and_slugs_unique(self):
         metas = [package.load_meta(d) for d in package.all_dashboards(REPO)]
         self.assertGreaterEqual(len(metas), 1)

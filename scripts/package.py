@@ -61,6 +61,26 @@ def all_dashboards(repo: Path) -> list[Path]:
     return sorted(p.parent for p in (Path(repo) / "dashboards").glob("*/dashboard.json"))
 
 
+def release_config_problems(repo: Path) -> list[str]:
+    """Mismatches between dashboards/*/ and the release-please config and manifest."""
+    repo = Path(repo)
+    packages = json.loads((repo / "release-please-config.json").read_text(encoding="utf-8"))["packages"]
+    manifest = json.loads((repo / ".release-please-manifest.json").read_text(encoding="utf-8"))
+    problems = []
+    for d in all_dashboards(repo):
+        key = f"dashboards/{d.name}"
+        if key not in packages:
+            problems.append(f"{key} is missing from release-please-config.json packages")
+        elif packages[key].get("component") != d.name:
+            problems.append(f"{key} component {packages[key].get('component')!r} must equal {d.name!r}")
+        if key not in manifest:
+            problems.append(f"{key} is missing from .release-please-manifest.json")
+    for key in sorted(set(packages) | set(manifest)):
+        if not (repo / key / "dashboard.json").is_file():
+            problems.append(f"{key} is configured for release but has no dashboard.json")
+    return problems
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("id")

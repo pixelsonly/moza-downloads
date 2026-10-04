@@ -73,7 +73,8 @@ Layout:
    enforces this.
 2. Register it with release-please. Add `"dashboards/<id>": { "component": "<id>" }` to
    `packages` in `release-please-config.json`, and `"dashboards/<id>": "0.0.0"` to
-   `.release-please-manifest.json`.
+   `.release-please-manifest.json`. `scripts/check.sh` fails if a dashboard folder and the
+   release config disagree.
 3. Add a row to the table above.
 
 ### How releases work
@@ -83,8 +84,10 @@ Layout:
   the scope, e.g. `feat(ksp01): add fuel readout` or `fix(ksp01): correct delta colour`.
 - Each dashboard is its own [release-please](https://github.com/googleapis/release-please)
   package. Only commits that touch `dashboards/<id>/` count toward that dashboard's next
-  release. If a change to `generator/` alters a dashboard's output, touch that dashboard
-  in the same PR, or add a `Release-As: x.y.z` footer.
+  release. If a change to `generator/` alters a dashboard's output, the same PR must also
+  change something under `dashboards/<id>/` (for example its `build.py` or tests).
+  Otherwise, no release is cut. A `Release-As:` footer on a generator-only commit is
+  ignored.
 - release-please opens a release PR per dashboard. Merging it publishes a release tagged
   `<id>-v<version>` (e.g. `ksp01-v0.1.0`). The `release-assets` workflow then builds the
   dashboard from that tag and attaches the `.zip`. To rebuild an existing release, run
