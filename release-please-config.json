@@ -2,7 +2,7 @@
   "release-type": "simple",
   "bump-minor-pre-major": true,
   "initial-version": "0.1.0",
-  "include-component-in-tag": false,
+  "include-component-in-tag": true,
   "changelog-sections": [
     { "type": "feat", "section": "Features" },
     { "type": "fix", "section": "Bug Fixes" },
@@ -17,6 +17,6 @@
     { "type": "test", "section": "Tests", "hidden": true }
   ],
   "packages": {
-    ".": {}
+    "dashboards/ksp01": { "component": "ksp01" }
   }
 }
