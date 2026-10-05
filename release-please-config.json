@@ -3,6 +3,7 @@
   "bump-minor-pre-major": true,
   "initial-version": "0.1.0",
   "include-component-in-tag": true,
+  "separate-pull-requests": true,
   "changelog-sections": [
     { "type": "feat", "section": "Features" },
     { "type": "fix", "section": "Bug Fixes" },
@@ -17,6 +18,8 @@
     { "type": "test", "section": "Tests", "hidden": true }
   ],
   "packages": {
-    "dashboards/ksp01": { "component": "ksp01" }
+    "dashboards/ksp01": { "component": "ksp01" },
+    "dashboards/ksp01-dark": { "component": "ksp01-dark" },
+    "dashboards/ksp01-light": { "component": "ksp01-light" }
   }
 }

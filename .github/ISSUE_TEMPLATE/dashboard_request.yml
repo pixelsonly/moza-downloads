@@ -16,7 +16,7 @@ body:
       label: New dashboard or change to an existing one?
       options:
         - New dashboard
-        - Change to KSP01
+        - Change to KSP01 (any variant)
     validations:
       required: true
   - type: textarea

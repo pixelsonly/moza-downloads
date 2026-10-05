@@ -15,7 +15,15 @@ ready-to-install `.zip` on the [Releases](https://github.com/pixelsonly/moza-dow
 
 | Dashboard | Wheel | Version | Preview | Download |
 |---|---|---|---|---|
-| Pixelsonly Racing KSP01 | Moza KS Pro | ![KSP01 version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fpixelsonly%2Fmoza-downloads%2Fmain%2F.release-please-manifest.json&query=%24%5B%27dashboards%2Fksp01%27%5D&label=KSP01&prefix=v) | <img src="dashboards/ksp01/previews/1.png" alt="KSP01 preview" width="320"> | [Latest KSP01 release](https://github.com/pixelsonly/moza-downloads/releases?q=ksp01&expanded=true) |
+| Pixelsonly Racing KSP01 Dark | Moza KS Pro | ![KSP01 Dark version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fpixelsonly%2Fmoza-downloads%2Fmain%2F.release-please-manifest.json&query=%24%5B%27dashboards%2Fksp01-dark%27%5D&label=KSP01%20Dark&prefix=v) | <img src="dashboards/ksp01-dark/previews/1.png" alt="KSP01 Dark preview" width="320"> | [Latest KSP01 Dark release](https://github.com/pixelsonly/moza-downloads/releases?q=ksp01-dark&expanded=true) |
+| Pixelsonly Racing KSP01 Light | Moza KS Pro | ![KSP01 Light version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fpixelsonly%2Fmoza-downloads%2Fmain%2F.release-please-manifest.json&query=%24%5B%27dashboards%2Fksp01-light%27%5D&label=KSP01%20Light&prefix=v) | <img src="dashboards/ksp01-light/previews/1.png" alt="KSP01 Light preview" width="320"> | [Latest KSP01 Light release](https://github.com/pixelsonly/moza-downloads/releases?q=ksp01-light&expanded=true) |
+| Pixelsonly Racing KSP01 (switchable, experimental) | Moza KS Pro | ![KSP01 version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fpixelsonly%2Fmoza-downloads%2Fmain%2F.release-please-manifest.json&query=%24%5B%27dashboards%2Fksp01%27%5D&label=KSP01&prefix=v) | <img src="dashboards/ksp01/previews/1.png" alt="KSP01 preview" width="320"> | [Latest KSP01 release](https://github.com/pixelsonly/moza-downloads/releases?q=ksp01&expanded=true) |
+
+**Which KSP01?** KSP01 Dark and KSP01 Light each have a single screen. KSP01 (switchable)
+has both, Dark first, meant to be switched with a control on the wheel. Switching hasn't
+worked on our test setup yet, so if it doesn't switch for you, use Dark or Light instead.
+If you get it working, please [open an issue](https://github.com/pixelsonly/moza-downloads/issues)
+and tell us your setup.
 
 Each download is named `pixelsonly-racing-<slug>-v<version>.zip`, where the slug names the
 wheel it is for, for example `pixelsonly-racing-Moza-KS-PRO-v0.1.0.zip`. It holds one folder named after the

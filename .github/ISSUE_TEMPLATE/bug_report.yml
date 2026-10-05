@@ -12,7 +12,9 @@ body:
     attributes:
       label: Dashboard
       options:
-        - KSP01
+        - KSP01 (switchable)
+        - KSP01 Dark
+        - KSP01 Light
         - Not dashboard-specific
     validations:
       required: true
