@@ -30,6 +30,16 @@
     "description": "Pixelsonly Racing KSP01 (Moza KS Pro)"
   },
   {
+    "name": "dashboard: ksp01-dark",
+    "color": "0b7285",
+    "description": "Pixelsonly Racing KSP01 Dark (Moza KS Pro)"
+  },
+  {
+    "name": "dashboard: ksp01-light",
+    "color": "0b7285",
+    "description": "Pixelsonly Racing KSP01 Light (Moza KS Pro)"
+  },
+  {
     "name": "loader: azom",
     "color": "c5def5",
     "description": "Loaded through SimHub + AZOM"
