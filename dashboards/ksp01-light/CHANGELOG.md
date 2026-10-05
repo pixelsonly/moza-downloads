@@ -2,6 +2,9 @@
 
 ## 0.1.0 (2026-10-05)
 
+**No download.** This release was published before its `.zip` could be attached, and
+releases here are immutable. Use 0.1.1 or later.
+
 
 ### Features
 

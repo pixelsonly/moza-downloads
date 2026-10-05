@@ -31,7 +31,7 @@ python3 dashboards/ksp01/build.py
 ```
 
 Output goes to `dist/`, which is gitignored. Never commit generated `.mzdash` or `.zip` files;
-CI builds them from source when a release is published.
+CI builds them from source for each release.
 
 The repo layout and the steps for adding a dashboard are in the [README](README.md#building-from-source).
 
