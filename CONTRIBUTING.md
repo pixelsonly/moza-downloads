@@ -53,7 +53,8 @@ The repo layout and the steps for adding a dashboard are in the [README](README.
   Use the dashboard id as the scope when a change affects a dashboard. Add `!` (`feat(ksp01)!: …`)
   or a `BREAKING CHANGE:` line in the PR body for breaking changes.
 - **Releases.** Only commits that touch `dashboards/<id>/` release that dashboard. If a change
-  to `generator/` alters a dashboard's output, the same PR must also change that dashboard.
+  to `generator/` (or to a design another dashboard imports) alters a dashboard's output, that
+  dashboard's `OUTPUT_SHA256` test fails; updating the hash in the same PR is what releases it.
 - **Checks.** CI must pass (`ci-success` and `pr-title / lint`). Run `scripts/check.sh` locally first.
 - **Layout changes.** Update the dashboard's `previews/` and say in the PR whether you tested it
   on hardware.
