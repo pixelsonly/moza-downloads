@@ -5,12 +5,22 @@ on:
     secrets:
       AUTOMATION_APP_PRIVATE_KEY:
         required: true
+    outputs:
+      paths_released:
+        description: JSON array of package paths that had (draft) releases created
+        value: ${{ jobs.release-please.outputs.paths_released }}
+      all:
+        description: Every release-please output as JSON, e.g. "<path>--tag_name"
+        value: ${{ jobs.release-please.outputs.all }}
 
 permissions: {}
 
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    outputs:
+      paths_released: ${{ steps.release.outputs.paths_released }}
+      all: ${{ toJSON(steps.release.outputs) }}
     steps:
       - name: Mint App token
         id: app-token
@@ -21,6 +31,7 @@ jobs:
           permission-contents: write
           permission-pull-requests: write
 
-      - uses: googleapis/release-please-action@v5
+      - id: release
+        uses: googleapis/release-please-action@v5
         with:
           token: ${{ steps.app-token.outputs.token }}

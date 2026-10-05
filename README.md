@@ -102,10 +102,14 @@ Layout:
   pins a hash of its output (`OUTPUT_SHA256`), so such a change fails CI until the hash
   is updated, and that update is what releases it. A `Release-As:` footer on a
   generator-only commit is ignored.
-- release-please opens a release PR per dashboard. Merging it publishes a release tagged
-  `<id>-v<version>` (e.g. `ksp01-v0.1.0`). The `release-assets` workflow then builds the
-  dashboard from that tag and attaches the `.zip`. To rebuild an existing release, run
-  `release-assets` manually with the tag.
+- release-please keeps one release PR open that covers every dashboard with pending
+  changes. Merging it creates a separate release per dashboard, tagged `<id>-v<version>`
+  (e.g. `ksp01-v0.1.0`). Each starts as a draft because the repo uses GitHub's
+  [immutable releases](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/immutable-releases):
+  once a release is published, assets can't be added or replaced. The `release-assets`
+  workflow builds each dashboard from its tag, attaches the `.zip` to the draft, then
+  publishes it. If that fails, fix the cause and run `release-assets` manually with the
+  tag. A published release can't be rebuilt; ship a new patch release instead.
 
 ## Contributing
 
