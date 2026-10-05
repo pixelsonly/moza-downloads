@@ -61,7 +61,7 @@ Layout:
 ### Adding a dashboard
 
 1. Create `dashboards/<id>/` with a `build.py` (see `dashboards/ksp01/build.py`), its
-   tests, `previews/`, and a `dashboard.json`:
+   tests (including a pinned `OUTPUT_SHA256`), `previews/`, and a `dashboard.json`:
 
    ```json
    {
@@ -88,10 +88,12 @@ Layout:
   the scope, e.g. `feat(ksp01): add fuel readout` or `fix(ksp01): correct delta colour`.
 - Each dashboard is its own [release-please](https://github.com/googleapis/release-please)
   package. Only commits that touch `dashboards/<id>/` count toward that dashboard's next
-  release. If a change to `generator/` alters a dashboard's output, the same PR must also
-  change something under `dashboards/<id>/` (for example its `build.py` or tests).
-  Otherwise, no release is cut. A `Release-As:` footer on a generator-only commit is
-  ignored.
+  release. If a change outside that folder (to `generator/`, or to a design another
+  dashboard imports) alters a dashboard's output, the same PR must also change something
+  under `dashboards/<id>/`. Otherwise, no release is cut. Each dashboard's `test_build.py`
+  pins a hash of its output (`OUTPUT_SHA256`), so such a change fails CI until the hash
+  is updated, and that update is what releases it. A `Release-As:` footer on a
+  generator-only commit is ignored.
 - release-please opens a release PR per dashboard. Merging it publishes a release tagged
   `<id>-v<version>` (e.g. `ksp01-v0.1.0`). The `release-assets` workflow then builds the
   dashboard from that tag and attaches the `.zip`. To rebuild an existing release, run
