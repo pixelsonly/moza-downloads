@@ -13,6 +13,8 @@ ready-to-install `.zip` on the [Releases](https://github.com/pixelsonly/moza-dow
 
 ## Dashboards
 
+<img src="docs/images/ksp01-on-wheel.jpg" alt="KSP01 Dark running on a Moza KS Pro wheel">
+
 | Dashboard | Wheel | Version | Preview | Download |
 |---|---|---|---|---|
 | Pixelsonly Racing KSP01 Dark | Moza KS Pro | ![KSP01 Dark version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fpixelsonly%2Fmoza-downloads%2Fmain%2F.release-please-manifest.json&query=%24%5B%27dashboards%2Fksp01-dark%27%5D&label=KSP01%20Dark&prefix=v) | <img src="dashboards/ksp01-dark/previews/1.png" alt="KSP01 Dark preview" width="320"> | [Latest KSP01 Dark release](https://github.com/pixelsonly/moza-downloads/releases?q=ksp01-dark&expanded=true) |
